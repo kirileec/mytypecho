@@ -23,8 +23,8 @@
     <link rel="stylesheet" href="http://cdn.staticfile.org/normalize/2.1.3/normalize.min.css">
     <link rel="stylesheet" href="<?php $this->
     options->themeUrl('grid.css'); ?>">
-<link href='http://fonts.useso.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
-<link href='http://fonts.useso.com/css?family=Source+Code+Pro:500' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:500' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="<?php $this->
     options->themeUrl('style.css'); ?>">
     <!--[if lt IE 9]>

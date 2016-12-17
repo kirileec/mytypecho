@@ -64,11 +64,12 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
                 $text = $content->text;
                 break;
             default:
-                $text = $content->content;
+                $text = $content->text;
                 break;
         }
     
-        $post = explode('<!--more-->', $text, 2);
+         $post = explode('<!--more-->', $text, 2);
+        //return array(Typecho_Common::fixHtml($post[0]));
         return array(Typecho_Common::fixHtml($post[0]), isset($post[1]) ? Typecho_Common::fixHtml($post[1]) : NULL);
     }
     
@@ -192,7 +193,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * 如果这里没有重载, 每次都会被默认执行
      *
      * @access public
-     * @param boolen $run 是否执行
+     * @param bool $run 是否执行
      * @return void
      */
     public function execute($run = false)
@@ -278,7 +279,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * 检查权限
      *
      * @access public
-     * @return void
+     * @return bool
      */
     public function checkAccess($name, $password, $level = 'contributor')
     {
@@ -296,7 +297,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         }
     }
 
-    /** about wp xmlrpc api, you can see http://codex.wordpress.org/XML-RPC*/
+
 
     /**
      * 获取pageId指定的page
@@ -306,7 +307,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @access public
-     * @return struct $pageStruct
+     * @return mixed
      */
     public function wpGetPage($blogId, $pageId, $userName, $password)
     {
@@ -366,7 +367,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @access public
-     * @return array(contains $pageStruct)
+     * @return mixed
      */
     public function wpGetPages($blogId, $userName, $password)
     {
@@ -425,7 +426,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param struct $content
      * @param bool $publish
      * @access public
-     * @return void
+     * @return mixed
      */
     public function wpNewPage($blogId, $userName, $password, $content, $publish)
     {
@@ -444,7 +445,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $password
      * @param int $pageId
      * @access public
-     * @return bool
+     * @return mixed
      */
     public function wpDeletePage($blogId, $userName, $password, $pageId)
     {
@@ -521,7 +522,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @access public
-     * @return array
+     * @return mixed
      */
     public function wpGetPageList($blogId, $userName, $password)
     {
@@ -552,7 +553,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @access public
-     * @return struct
+     * @return mixed
      */
     public function wpGetAuthors($blogId, $userName, $password)
     {
@@ -584,7 +585,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $password
      * @param struct $category
      * @access public
-     * @return void
+     * @return mixed
      */
     public function wpNewCategory($blogId, $userName, $password, $category)
     {
@@ -622,7 +623,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $category
      * @param int $max_results
      * @access public
-     * @return array
+     * @return mixed
      */
     public function wpSuggestCategories($blogId, $userName, $password, $category, $max_results)
     {
@@ -658,7 +659,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @access public
      * @param string $userName 用户名
      * @param string $password 密码
-     * @return array
+     * @return mixed
      */
     public function wpGetUsersBlogs($userName, $password)
     {
@@ -684,7 +685,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @access public
      * @param string $userName 用户名
      * @param string $password 密码
-     * @return array
+     * @return mixed
      */
     public function wpGetProfile($blogId, $userName, $password)
     {
@@ -716,7 +717,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param integer $blogId
      * @param string $userName
      * @param string $password
-     * @return array
+     * @return mixed
      */
     public function wpGetTags($blogId, $userName, $password)
     {
@@ -750,7 +751,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @param integer $categoryId
-     * @return array
+     * @return mixed
      */
     public function wpDeleteCategory($blogId, $userName, $password, $categoryId)
     {
@@ -775,7 +776,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @param integer $postId
-     * @return array
+     * @return mixed
      */
     public function wpGetCommentCount($blogId, $userName, $password, $postId)
     {
@@ -802,7 +803,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param integer $blogId
      * @param string $userName
      * @param string $password
-     * @return array
+     * @return mixed
      */
     public function wpGetPostFormats($blogId, $userName, $password)
     {
@@ -823,7 +824,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param integer $blogId
      * @param string $userName
      * @param string $password
-     * @return array
+     * @return mixed
      */
     public function wpGetPostStatusList($blogId, $userName, $password)
     {
@@ -846,7 +847,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param integer $blogId
      * @param string $userName
      * @param string $password
-     * @return array
+     * @return mixed
      */
     public function wpGetPageStatusList($blogId, $userName, $password)
     {
@@ -870,7 +871,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param integer $blogId
      * @param string $userName
      * @param string $password
-     * @return array
+     * @return mixed
      */
     public function wpGetCommentStatusList($blogId, $userName, $password)
     {
@@ -893,7 +894,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param integer $blogId
      * @param string $userName
      * @param string $password
-     * @return array
+     * @return mixed
      */
     public function wpGetPageTemplates($blogId, $userName, $password)
     {
@@ -916,7 +917,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @param array $options
-     * @return array
+     * @return mixed
      */
     public function wpGetOptions($blogId, $userName, $password, $options = array())
     {
@@ -951,7 +952,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @param array $options
-     * @return array
+     * @return mixed
      */
     public function wpSetOptions($blogId, $userName, $password, $options = array())
     {
@@ -990,7 +991,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @param integer $commentId
-     * @return array
+     * @return mixed
      */
     public function wpGetComment($blogId, $userName, $password, $commentId)
     {
@@ -1035,7 +1036,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @param array $struct
-     * @return array
+     * @return mixed
      */
     public function wpGetComments($blogId, $userName, $password, $struct)
     {
@@ -1099,7 +1100,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @param integer $commentId
-     * @return boolean
+     * @return mixed
      */
     public function wpDeleteComment($blogId, $userName, $password, $commentId)
     {
@@ -1128,7 +1129,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $password
      * @param integer $commentId
      * @param array $struct
-     * @return boolean
+     * @return mixed
      */
     public function wpEditComment($blogId, $userName, $password, $commentId, $struct)
     {
@@ -1189,7 +1190,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $password
      * @param mixed $path
      * @param array $struct
-     * @return int
+     * @return mixed
      */
     public function wpNewComment($blogId, $userName, $password, $path, $struct)
     {
@@ -1243,7 +1244,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
             return new IXR_Error(500, $e->getMessage());
         }
         
-        return new IXR_Error(403, _t('无法添加评论'));
+        //return new IXR_Error(403, _t('无法添加评论'));
     }
 
 
@@ -1256,7 +1257,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @param struct $struct
-     * @return boolean
+     * @return mixed
      */
     public function wpGetMediaLibrary($blogId, $userName, $password, $struct)
     {
@@ -1316,7 +1317,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @param int $attachmentId
-     * @return boolean
+     * @return null
      */
     public function wpGetMediaItem($blogId, $userName, $password, $attachmentId)
     {
@@ -1347,7 +1348,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
 
 
 
-    /**about MetaWeblog API, you can see http://www.xmlrpc.com/metaWeblogApi*/
+
     /**
      * MetaWeblog API
      *
@@ -1357,7 +1358,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param struct $content
      * @param bool $publish
      * @access public
-     * @return int
+     * @return null
      */
     public function mwNewPost($blogId, $userName, $password, $content, $publish)
     {
@@ -1499,7 +1500,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @access public
-     * @return void
+     * @return mixed
      */
     public function mwGetPost($postId, $userName, $password)
     {
@@ -1555,7 +1556,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $password
      * @param int $postsNum
      * @access public
-     * @return postStructs
+     * @return mixed
      */
     public function mwGetRecentPosts($blogId, $userName, $password, $postsNum)
     {
@@ -1617,7 +1618,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @access public
-     * @return categoryStructs
+     * @return mixed
      */
     public function mwGetCategories($blogId, $userName, $password)
     {
@@ -1652,7 +1653,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $password
      * @param mixed $data
      * @access public
-     * @return void
+     * @return mixed
      */
     public function mwNewMediaObject($blogId, $userName, $password, $data)
     {
@@ -1698,7 +1699,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $password
      * @param int $postNum
      * @access public
-     * @return postTitleStructs
+     * @return mixed
      */
     public function mtGetRecentPostTitles($blogId, $userName, $password, $postsNum)
     {
@@ -1731,7 +1732,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @access public
-     * @return categories
+     * @return mixed
      */
     public function mtGetCategoryList($blogId, $userName, $password)
     {
@@ -1759,7 +1760,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @access public
-     * @return void
+     * @return mixed
      */
     public function mtGetPostCategories($postId, $userName, $password)
     {
@@ -1793,7 +1794,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $password
      * @param string $categories
      * @access public
-     * @return bool
+     * @return mixed
      */
     public function mtSetPostCategories($postId, $userName, $password, $categories)
     {
@@ -1819,7 +1820,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @access public
-     * @return bool
+     * @return mixed
      */
     public function mtPublishPost($postId, $userName, $password)
     {
@@ -1831,7 +1832,8 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
         $select = $this->select()->where('table.contents.cid = ? AND table.contents.type = ?', $postId, 'post')->limit(1);
 
         /** 提交查询 */
-        $post = $this->$db->fetchRow($select, array($this, 'push'));
+
+        $post = $this->db->fetchRow($select, array($this, 'push'));
         if ($this->authorId != $this->user->uid && !$this->checkAccess($userName, $password, 'administrator')) {
             return new IXR_Error(403, '权限不足.');
         }
@@ -1849,9 +1851,9 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param int $blogId
      * @param string $userName
      * @param string $password
-     * @access public
-     * @return void
-     */
+        * @access public
+     * @return null
+        */
     public function bloggerGetUsersBlogs($blogId, $userName, $password)
     {
         if (!$this->checkAccess($userName, $password)) {
@@ -1877,7 +1879,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @access public
-     * @return void
+     * @return mixed
      */
     public function bloggerGetUserInfo($blogId, $userName, $password)
     {
@@ -1905,7 +1907,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $userName
      * @param string $password
      * @access public
-     * @return void
+     * @return mixed
      */
     public function bloggerGetPost($blogId, $postId, $userName, $password)
     {
@@ -1942,7 +1944,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param mixed $password
      * @param mixed $publish
      * @access public
-     * @return bool
+     * @return mixed
      */
     public function bloggerDeletePost($blogId, $postId, $userName, $password, $publish)
     {
@@ -1964,7 +1966,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $password
      * @param int $postsNum
      * @access public
-     * @return void
+     * @return mixed
      */
     public function bloggerGetRecentPosts($blogId, $userName, $password, $postsNum)
     {
@@ -2004,7 +2006,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $password
      * @param mixed $template
      * @access public
-     * @return void
+     * @return mixed
      */
     public function bloggerGetTemplate($blogId, $userName, $password, $template)
     {
@@ -2024,7 +2026,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param mixed $content
      * @param mixed $template
      * @access public
-     * @return void
+     * @return mixed
      */
     public function bloggerSetTemplate($blogId, $userName, $password, $content, $template)
     {
@@ -2041,7 +2043,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
      * @param string $source
      * @param string $target
      * @access public
-     * @return void
+     * @return mixed
      */
     public function pingbackPing($source, $target)
     {
@@ -2153,7 +2155,7 @@ class Widget_XmlRpc extends Widget_Abstract_Contents implements Widget_Interface
                     return new IXR_Error(48, _t('PingBack已经存在'));
                 }
             } else {
-                return IXR_Error(49, _t('目标地址禁止Ping'));
+                return new IXR_Error(49, _t('目标地址禁止Ping'));
             }
         } else {
             return new IXR_Error(33, _t('这个目标地址不存在'));
